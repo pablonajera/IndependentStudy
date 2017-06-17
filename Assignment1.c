@@ -7,12 +7,15 @@ Also make a driver program that runs tests and prints results.
     "The first array is 1,7,2,9,3 and after sorting it is 1,2,3,7,9
 */
 
+#include <stdio.h>
+
 void intInsertionSort (int arr[], int size){
 	int key;
+	int i;
 	int j;
 
 	//loop though array
-	for (int i = 0; i < size; i++ ){
+	for (i = 0; i < size; i++ ){
 		key = arr[i];
 		j = i-1;
 
@@ -27,23 +30,25 @@ void intInsertionSort (int arr[], int size){
 
 int main(){
 	//define array & size
-	int arrayOfInts[] = {1,7,2,9,3};
+	int arr[] = {1,7,2,9,3};
 	int size = sizeof(arr)/sizeof(arr[0]);
+	int i;
 
 	//Print original array
 	printf("Originally, the array is: ");
-	for (int i = 0; i < size; i++){
+	for (i = 0; i < size; i++){
 		printf("%d,", arr[i]);
 	}
 	printf("\n");
 
 	//Sort
-	insertionSort(arrayOfInts, size);
+	intInsertionSort(arr, size);
 
 	//Print New Array
 	printf("After insertionSort, it is: ");
-	for (int i = 0; i < size; i++){
+	for (i = 0; i < size; i++){
 		printf("%d,", arr[i]);
 	}
 	printf("\n");
+    return 0;
 }
