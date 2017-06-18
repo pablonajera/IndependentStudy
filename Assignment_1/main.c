@@ -7,7 +7,6 @@ Also make a driver program that runs tests and prints results.
     "The first array is 1,7,2,9,3 and after sorting it is 1,2,3,7,9
 */
 
-#include <stdio.h>
 #include "driverInsertionSort.h"
 #include "driverSelectionSort.h"
 #include "driverQuickSort.h"
