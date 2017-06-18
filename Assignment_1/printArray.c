@@ -1,3 +1,10 @@
+/*
+Pablo Najera
+Assignment 1
+This file contains the functions for printing arrays
+of ints, floats and Struct cat, one element per line
+*/
+
 #include <stdio.h>
 #include "cat.h"
 

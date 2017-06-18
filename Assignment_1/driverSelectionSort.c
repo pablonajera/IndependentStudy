@@ -1,3 +1,9 @@
+/*
+Pablo Najera
+Assignment 1
+This file is a driver for the selection sort on all three arrays
+*/
+
 #include <stdlib.h>
 #include "insertionSort.h"
 #include "printArray.h"

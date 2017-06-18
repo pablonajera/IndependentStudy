@@ -1,3 +1,10 @@
+/*
+Pablo Najera
+Assignment 1
+This file contains the functions for running selection sort
+on arrays of ints, floats, and a struct Cat
+*/
+
 #include "cat.h"
 
 void intSelectionSort(int array[], int size){
