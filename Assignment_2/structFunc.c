@@ -44,12 +44,21 @@ int main (){
 	//convert Char to int
 	char *ptr;
 	int index;
-	index = strtol(&indexChar, &ptr, 10);
+	index = strtol(&indexChar, &ptr, 10);	
+	
+	//Check for valid input
+	while (index < 1 || index > 6){
+		printf("\nInvalid Selection. Please try again:\
+					\n1. Spike\n2. Rex\n3. Spot\n4. Otie\n5. goddard \
+					\n6. Chloe\n\n");
+		scanf(" %c", &indexChar);
+		index = strtol(&indexChar, &ptr, 10);
+	}
 	
 	//get dog name
 	char name[20] = "name";
 	getDogName(name, index);
-	printf("\nYou chose %s!\n", name);
+	printf("\nYou chose %s!\n\n", name);
 
 	//make index usable with array
 	index -= 1;
@@ -61,10 +70,18 @@ int main (){
 	scanf(" %c", &selectionChar);
 	
 	//convert Char to int
-	char *ptr2;
 	int selection;
 	selection = strtol(&selectionChar, &ptr, 10);
 	printf("%d", selection);
+	
+	//Check for valid input
+	while (selection < 1 || selection > 3){
+		printf("\nInvalid Selection. Please try again:\
+					\n1. %s's height\n2. %s's weight\n3. %s's age\n\n",
+					name, name, name);
+		scanf(" %c", &selectionChar);
+		selection = strtol(&selectionChar, &ptr, 10);
+	}
 	
 	//get Characteristic
 	char characteristic[20] = "none";
