@@ -10,7 +10,7 @@ The struct will be defined as "legislator" and will contain an two strings
 of size 50 (first and last name) and an int (age).
 
 Details:
-Program gets age based on July 11, 2017 (the date this assignment was done).
+Program gets age based on July 14, 2017 (the date this assignment was done).
 */
 
 #include <stdio.h>
@@ -25,6 +25,31 @@ struct legislator{
 	int age;
 };
 
+int monthConversion(char *month);
+int dateConversion(char *date);
+void lineToLegislator(struct legislator *cong, char *line);
+void printLegislator (struct legislator *cong, int serial);
+
+int main(int argc, char *argv[]){
+	FILE* info = fopen("info.csv", "r");
+	char line[100];
+	int serial = 1;
+	struct legislator leggy = {.firstName = "", .lastName = "", .age = 0};
+	if (info != NULL) {
+		while(fgets(line, 100, info)) {
+			printf("Line #%i from CSV: %s", serial, line);
+			line[strlen(line)-1] = 0;
+			line[strlen(line)-1] = 0;
+			
+			lineToLegislator(&leggy, line);
+			printLegislator(&leggy, serial);
+			serial++;
+		}
+	} 
+	fclose(info);
+	return 0;
+}
+
 int monthConversion(char *month){
 	int i;
 	for(i = 0; i < 11; i++){
@@ -34,7 +59,6 @@ int monthConversion(char *month){
 	}
 	return 0;
 }
-
 
 int dateConversion(char *date){
 	int age = 0;
@@ -46,46 +70,26 @@ int dateConversion(char *date){
 	age = 2017 - atoi(dateMem2);
 
 	if (month < 6){
-		age += 1;
+		age -= 1;
 	}
 	else if (month == 6){
-		if (atoi(dateMem0) < 11){
-			age += 1;
+		if (atoi(dateMem0) < 14){
+			age -= 1;
 		}
 	}
-	
 	return age;
 }
 
 void lineToLegislator(struct legislator *cong, char *line){
-	char* infoMem0 = strtok(line, "-");
-	char* infoMem1 = strtok(NULL, "-");
-	char* infoMem2 = strtok(NULL,"-");
+	char* infoMem0 = strtok(line, ",");
+	char* infoMem1 = strtok(NULL, ",");
+	char* infoMem2 = strtok(NULL,",");
 	strcpy(cong -> lastName, infoMem0);
 	strcpy(cong -> firstName, infoMem1);
 	cong -> age = dateConversion(infoMem2);
 }
 
-int main(int argc, char *argv[]){
-	FILE* info = fopen("info.csv", "r");
-	char line[100];
-	struct legislator leggy = {.firstName = "", .lastName = "", .age = 0};
-	if (info != NULL) {
-		while(fgets(line, 100, info)) {
-			/*TODO: Remove trailing characters that cause seg faults
-			printf("1: %s", line);
-//			line[strlen(line) - 2] = 0;
-			char* p = strchr(line, '\n');
-			if (p != NULL) *p = '\0';
-//			line2 = strchr(line, '\r');
-			
-			printf("yeet\n");
-			printf("2: %s lol", line);
-			lineToLegislator(&leggy, line);
-			*/
-			printf("%s",line);						
-		}
-	} 
-	fclose(info);
-	return 0;
+void printLegislator (struct legislator *cong, int serial){
+	printf("Legislator #%i is: %s %s, %i years old\n\n",
+		serial, cong -> firstName, cong -> lastName, cong -> age);
 }
