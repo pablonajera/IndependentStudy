@@ -66,7 +66,7 @@ int monthConversion(char *month){
 	matches given month*/
 	int i;
 	for(i = 0; i < 11; i++){
-		if (month == months[i]){
+		if (strcmp(month, months[i])){
 			return i+1;
 		}
 	}
